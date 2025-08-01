@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+ENV/
+
+# Node.js
+node_modules/
+.next/
+out/
+build/
+.DS_Store
+*.pem
+.env*.local
+.vercel
+
+# Database
+*.db
+
+# Upload directory contents but keep the directory
+uploads/*
+!uploads/.gitkeep
+
+# VS Code
+.vscode/
+
+# Plotly figures contents but keep the directories
+images/plotly_figures/*
+!images/plotly_figures/.gitkeep
+!images/plotly_figures/html
+images/plotly_figures/html/*
+!images/plotly_figures/html/.gitkeep
+!images/plotly_figures/metadata.json
