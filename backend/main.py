@@ -83,8 +83,17 @@ except Exception as e:
 
 # Serve Next.js frontend
 try:
-    app.mount("/", StaticFiles(directory="insights-frontend/out", html=True), name="frontend")
-    logger.info("Frontend static files mounted successfully")
+    frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "insights-frontend", "out")
+    if not os.path.exists(frontend_dir):
+        logger.warning(f"Frontend directory not found at {frontend_dir}")
+        # Try relative to current working directory
+        frontend_dir = os.path.join(os.getcwd(), "insights-frontend", "out")
+        if not os.path.exists(frontend_dir):
+            logger.warning(f"Frontend directory not found at {frontend_dir}")
+            raise FileNotFoundError(f"Frontend directory not found at {frontend_dir}")
+    
+    app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
+    logger.info(f"Frontend static files mounted successfully from {frontend_dir}")
 except Exception as e:
     logger.error(f"Error mounting frontend files: {str(e)}")
     # Don't fail startup if frontend files aren't available yet

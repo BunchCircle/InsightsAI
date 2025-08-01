@@ -3,7 +3,7 @@ const path = require('path');
 
 async function copyBuildFiles() {
   const sourceDir = path.join(__dirname, '../out');
-  const targetDir = path.join(__dirname, '../../insights-frontend/out');
+  const targetDir = path.join(__dirname, '../out');
 
   try {
     // Ensure target directory exists

@@ -7,7 +7,8 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "build": "next build && node scripts/copy-build.js",
+    "build": "next build && powershell -File scripts/build.ps1",
+    "build:unix": "next build && mkdir -p out && cp -r .next/static out/ && cp -r .next/server out/ && cp -r .next/standalone/* out/",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"
