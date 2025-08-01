@@ -11,7 +11,11 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.7)
+llm = ChatOpenAI(
+    model="gpt-4",  # or "gpt-3.5-turbo" if you prefer
+    temperature=0.7,
+    api_key=os.getenv("OPENAI_API_KEY")
+)
 
 tools = [complete_python_task]
 

@@ -11,7 +11,16 @@ logger = logging.getLogger(__name__)
 
 # Load environment variables
 load_dotenv()
-logger.info("Environment variables loaded")
+
+# Verify required environment variables
+required_env_vars = ["OPENAI_API_KEY"]
+missing_vars = [var for var in required_env_vars if not os.getenv(var)]
+
+if missing_vars:
+    logger.error(f"Missing required environment variables: {', '.join(missing_vars)}")
+    logger.error("Please set these variables in Railway's environment variables section")
+else:
+    logger.info("All required environment variables are present")
 
 app = FastAPI(title="Insights API")
 
