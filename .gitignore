@@ -36,11 +36,17 @@ build/
 # Database
 *.db
 
-# Upload directory - if you don't want to track uploaded files
-uploads/
+# Upload directory contents but keep the directory
+uploads/*
+!uploads/.gitkeep
 
 # VS Code
 .vscode/
 
-# Plotly figures
-images/plotly_figures/
+# Plotly figures contents but keep the directories
+images/plotly_figures/*
+!images/plotly_figures/.gitkeep
+!images/plotly_figures/html
+images/plotly_figures/html/*
+!images/plotly_figures/html/.gitkeep
+!images/plotly_figures/metadata.json
