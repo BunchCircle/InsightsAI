@@ -7,8 +7,7 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "build": "next build && next export -o out && mkdir -p /app/insights-frontend/out && cp -r out/* /app/insights-frontend/out/ || true",
-    "build:local": "next build && next export -o out",
+    "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"

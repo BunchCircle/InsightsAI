@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',  // Enable static export
+  distDir: 'out',   // Output directly to out directory
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,7 +12,7 @@ const nextConfig = {
     unoptimized: true,  // Required for static export
     domains: ['localhost'],
   },
-  // Disable server-side features since we're doing static export
+  // Ensure static export works with app directory
   experimental: {
     appDir: true,
   },

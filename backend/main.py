@@ -83,15 +83,32 @@ except Exception as e:
 
 # Serve Next.js frontend
 try:
-    frontend_dir = os.path.join(os.path.dirname(os.path.dirname(__file__)), "insights-frontend", "out")
-    if not os.path.exists(frontend_dir):
-        logger.warning(f"Frontend directory not found at {frontend_dir}")
-        # Try relative to current working directory
-        frontend_dir = os.path.join(os.getcwd(), "insights-frontend", "out")
-        if not os.path.exists(frontend_dir):
-            logger.warning(f"Frontend directory not found at {frontend_dir}")
-            raise FileNotFoundError(f"Frontend directory not found at {frontend_dir}")
+    # Try different possible locations for the frontend files
+    possible_paths = [
+        # Direct path from backend directory
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "insights-frontend", "out"),
+        # From current working directory
+        os.path.join(os.getcwd(), "insights-frontend", "out"),
+        # From Railway deployment directory
+        "/app/insights-frontend/out",
+        # Direct in current directory
+        os.path.join(os.getcwd(), "out"),
+        # Next to backend directory
+        os.path.join(os.path.dirname(__file__), "out"),
+    ]
+
+    frontend_dir = None
+    for path in possible_paths:
+        if os.path.exists(path):
+            frontend_dir = path
+            break
+        else:
+            logger.warning(f"Frontend directory not found at {path}")
+
+    if frontend_dir is None:
+        raise FileNotFoundError("Could not find frontend files in any expected location")
     
+    logger.info(f"Found frontend files at: {frontend_dir}")
     app.mount("/", StaticFiles(directory=frontend_dir, html=True), name="frontend")
     logger.info(f"Frontend static files mounted successfully from {frontend_dir}")
 except Exception as e:
