@@ -9,6 +9,22 @@ load_dotenv()
 
 app = FastAPI(title="Insights API")
 
+# Create necessary directories on startup
+def create_required_directories():
+    directories = [
+        "uploads",
+        "images/plotly_figures/html",
+    ]
+    for directory in directories:
+        os.makedirs(directory, exist_ok=True)
+    
+    # Initialize metadata.json if it doesn't exist
+    metadata_path = "images/plotly_figures/metadata.json"
+    if not os.path.exists(metadata_path):
+        with open(metadata_path, "w") as f:
+            f.write("{}")
+
+create_required_directories()
 
 
 # CORS: allow Next.js dev server (port 3000) and production build
