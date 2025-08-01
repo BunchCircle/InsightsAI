@@ -81,9 +81,8 @@ except Exception as e:
     logger.error(f"Error mounting API routers: {str(e)}")
     # Don't fail startup if API routers have an issue
 
-# Serve Next.js static files and frontend
+# Serve Next.js frontend
 try:
-    app.mount("/_next", StaticFiles(directory="insights-frontend/.next/static"), name="next_static")
     app.mount("/", StaticFiles(directory="insights-frontend/out", html=True), name="frontend")
     logger.info("Frontend static files mounted successfully")
 except Exception as e:
