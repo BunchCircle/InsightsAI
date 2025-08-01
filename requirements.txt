@@ -5,6 +5,7 @@ pandas
 numpy
 scikit-learn
 plotly
+passlib
 apscheduler  # For scheduled cleanup tasks
 
 # Let pip resolve compatible versions for these:
