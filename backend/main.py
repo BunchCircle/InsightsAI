@@ -9,6 +9,11 @@ load_dotenv()
 
 app = FastAPI(title="Insights API")
 
+@app.get("/")
+async def health_check():
+    """Health check endpoint for Railway deployment"""
+    return {"status": "healthy", "message": "Insights API is running"}
+
 # Create necessary directories on startup
 def create_required_directories():
     directories = [
