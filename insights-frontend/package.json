@@ -7,8 +7,8 @@
     "npm": ">=10.0.0"
   },
   "scripts": {
-    "build": "next build && powershell -File scripts/build.ps1",
-    "build:unix": "next build && mkdir -p out && cp -r .next/static out/ && cp -r .next/server out/ && cp -r .next/standalone/* out/",
+    "build": "next build && next export -o out && mkdir -p /app/insights-frontend/out && cp -r out/* /app/insights-frontend/out/ || true",
+    "build:local": "next build && next export -o out",
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start"

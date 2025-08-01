@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',  // Enable standalone output with static files
+  output: 'export',  // Enable static export
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -11,16 +11,9 @@ const nextConfig = {
     unoptimized: true,  // Required for static export
     domains: ['localhost'],
   },
-  // Ensure static assets are included
+  // Disable server-side features since we're doing static export
   experimental: {
-    outputFileTracingRoot: process.cwd(),
-    outputFileTracingExcludes: {
-      '*': [
-        'node_modules/@swc/core-linux-x64-gnu',
-        'node_modules/@swc/core-linux-x64-musl',
-        'node_modules/@esbuild/linux-x64',
-      ],
-    },
+    appDir: true,
   },
 }
 
