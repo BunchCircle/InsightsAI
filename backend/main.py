@@ -24,7 +24,7 @@ else:
 
 app = FastAPI(title="Insights API")
 
-@app.get("/")
+@app.get("/health")
 async def health_check():
     """Health check endpoint for Railway deployment"""
     logger.info("Health check endpoint called")

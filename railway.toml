@@ -1,10 +1,12 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "pip install -r requirements.txt"
+buildCommand = """
+cd insights-frontend && npm install && npm run build && cd .. && pip install -r requirements.txt
+"""
 
 [deploy]
 startCommand = "uvicorn backend.main:app --host 0.0.0.0 --port $PORT --workers 1 --log-level debug"
-healthcheckPath = "/"
+healthcheckPath = "/health"
 healthcheckTimeout = 300
 healthcheckInterval = 30
 restartPolicyType = "ON_FAILURE"
